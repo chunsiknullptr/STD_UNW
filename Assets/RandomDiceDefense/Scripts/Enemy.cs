@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class Enemy : MonoBehaviour
     EnemyPathes enemyPathes;
 
     // 현재 목적지의 인데스
-    int currentPathIndex = 0;
+    public int currentPathIndex { get; private set; } = 0;
     [SerializeField]
     float speed = 3f;
 
@@ -38,5 +39,14 @@ public class Enemy : MonoBehaviour
         {
             currentPathIndex++;
         }
+    }
+
+    public float GetRemainDistance()
+    {
+        var currentPos = this.transform.position;
+        var currentPathPos = enemyPathes.Pathes[currentPathIndex].transform.position;
+        var toVec = currentPathPos - currentPos;
+
+        return toVec.magnitude;
     }
 }
