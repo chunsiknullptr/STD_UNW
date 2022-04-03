@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class UserDice : MonoBehaviour
 {
+    [SerializeField]
+    DiceStatSO stat;
+
     // 총알을 x초에 한번씩 발사하는 기능을 가지고 있음.
     public GameObject bulletPrefab;
     public Enemy targetEnemy;
-    public float thresholdTime = 1;
     float accTime = 0;
     
     // threshold
@@ -21,7 +23,7 @@ public class UserDice : MonoBehaviour
     void TryCheckAndShoot()
     {
         accTime += Time.deltaTime; // 0.016 정도 된다, 60frame일때
-        if (accTime > thresholdTime)
+        if (accTime > stat.howFrequencyTimeForBullet)
         {
             // 가장 맨 앞에 있는 적을 타겟으로,
             var enemys = FindObjectsOfType<Enemy>();
@@ -39,6 +41,7 @@ public class UserDice : MonoBehaviour
 
             targetEnemy = enemyList[0];
             clonedBullet.SetTarget(targetEnemy.gameObject);
+            clonedBullet.SetDamage(this.stat.bulletDamage);
             accTime = 0;
 
             clonedBullet.transform.position = this.transform.position;

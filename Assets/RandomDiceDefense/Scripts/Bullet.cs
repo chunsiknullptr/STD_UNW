@@ -9,6 +9,9 @@ public class Bullet : MonoBehaviour
 
     [SerializeField]
     float damage;
+    public float GetDamage => damage;
+    float rad;
+    public float GetRad => rad;
 
     // 총알의 목표물
     GameObject target;
@@ -16,6 +19,7 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         speed = Random.Range(3f, 6f);
+        rad = this.GetComponent<SphereCollider>().radius;
     }
 
     public void SetTarget(GameObject inTarget)
@@ -36,5 +40,10 @@ public class Bullet : MonoBehaviour
 
         //총알의 위치는
         transform.position += toVec.normalized * speed * Time.deltaTime;
+    }
+
+    public void SetDamage(float bulletDamage)
+    {
+        damage = bulletDamage;
     }
 }

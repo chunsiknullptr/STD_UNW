@@ -109,6 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de94931f7c1fd44fa0b8d2f5fb5a51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stat: {fileID: 11400000, guid: ebbcc8bdb94925e4f9b7f6aa5a0ee6e9, type: 2}
   bulletPrefab: {fileID: 2885628593301619278, guid: 6db96d9a1482b2e429e5250cb0d1e833, type: 3}
   targetEnemy: {fileID: 0}
-  x: 0.5
